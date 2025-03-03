@@ -17,8 +17,8 @@ public class Parentesis {
     */
     
     public static void main(String[] args) {
-        String comando = "(2 + 3) / ((3 + 4) * 3)()(())";
-        Stack<Character> pila = new StackArray<>(10);
+        String comando = "(2 + 3) / ((3 + 4) * 3)()(()";
+        Stack<Character> pila = new StackLL<>();
         
         for(char item : comando.toCharArray()) {
             if (item == '(') {
