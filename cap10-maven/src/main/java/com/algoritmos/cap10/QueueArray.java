@@ -2,21 +2,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package cap10;
+package com.algoritmos.cap10;
 
 /**
  *
  * @author enrique
  */
 public class QueueArray<T> implements Queue<T> {
-    protected T[] arreglo;
+    private T[] arreglo;
     private int conteo;
     private int frente;
     private int fin;
-    
-    protected int adelantar(int pos) {
-        return pos + 1;
-    }
     
     public QueueArray(int capacidad) {
         arreglo = (T[]) new Object[capacidad];
@@ -28,13 +24,12 @@ public class QueueArray<T> implements Queue<T> {
     
     @Override
     public boolean enqueue(T dato) {
-        if (isFull()) {
+        if (fin == arreglo.length - 1) {
             throw new RuntimeException("Queue esta lleno");
             //return false;
         }
         
-        fin = adelantar(fin);
-        arreglo[fin] = dato;
+        arreglo[++fin] = dato;
         conteo++;
         return true;
     }
@@ -42,7 +37,7 @@ public class QueueArray<T> implements Queue<T> {
     @Override
     public T dequeue() {
         T aux = front();
-        frente = adelantar(frente);
+        frente++;
         conteo--;
         return aux;
     }
@@ -59,10 +54,6 @@ public class QueueArray<T> implements Queue<T> {
         }
         
         return arreglo[frente];
-    }
-    
-    public boolean isFull() {
-        return conteo >= this.arreglo.length;
     }
     
 }
