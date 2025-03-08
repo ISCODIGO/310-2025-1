@@ -21,8 +21,8 @@ public class StackLL<T> implements Stack<T> {
     
     @Override
     public boolean push(T dato) {
-        return lista.add(dato);
-        
+        lista.addFirst(dato);
+        return true;        
     }
 
     @Override

@@ -62,7 +62,17 @@ public class QueueArray<T> implements Queue<T> {
     }
     
     public boolean isFull() {
-        return conteo >= this.arreglo.length;
+        return fin >= this.arreglo.length - 1;
     }
+
+    @Override
+    public void clear() {
+        conteo = 0;
+        frente = 0;
+        fin = -1;
+    }      
     
+    public int getConteo() {
+        return this.conteo;
+    }
 }

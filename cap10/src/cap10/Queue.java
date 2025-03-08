@@ -11,6 +11,7 @@ package cap10;
 public interface Queue<T> {
     boolean enqueue(T dato);  // encolar (insertar un nuevo fin)
     T dequeue();  // desencolar (quitar un frente)
-    boolean isEmpty();
+    boolean isEmpty();  // verifica si la cola no tiene elementos
     T front();  // Obtiene el valor del frente
+    void clear();
 }
