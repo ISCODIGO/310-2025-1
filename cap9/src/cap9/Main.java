@@ -14,14 +14,14 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        StackArray<Integer> pila = new StackArray<>(10);
+        PilaArr<Integer> pila = new PilaArr<>(10);
         
-        pila.push(10);
-        pila.push(20);
-        pila.push(30);  // <- cima
+        pila.apilar(10);
+        pila.apilar(20);
+        pila.apilar(30);  // <- cima
         
-        while(!pila.isEmpty()) {
-            System.out.println(pila.pop());
+        while(!pila.estaVacio()) {
+            System.out.println(pila.desapilar());
         }
     }
     

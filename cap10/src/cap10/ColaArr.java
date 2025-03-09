@@ -8,7 +8,7 @@ package cap10;
  *
  * @author enrique
  */
-public class QueueArray<T> implements Queue<T> {
+public class ColaArr<T> implements ICola<T> {
     protected T[] arreglo;
     private int conteo;
     private int frente;
@@ -18,7 +18,7 @@ public class QueueArray<T> implements Queue<T> {
         return pos + 1;
     }
     
-    public QueueArray(int capacidad) {
+    public ColaArr(int capacidad) {
         arreglo = (T[]) new Object[capacidad];
         conteo = 0;
         frente = 0;
@@ -27,8 +27,8 @@ public class QueueArray<T> implements Queue<T> {
     
     
     @Override
-    public boolean enqueue(T dato) {
-        if (isFull()) {
+    public boolean encolar(T dato) {
+        if (estaLlena()) {
             throw new RuntimeException("Queue esta lleno");
             //return false;
         }
@@ -40,33 +40,33 @@ public class QueueArray<T> implements Queue<T> {
     }
 
     @Override
-    public T dequeue() {
-        T aux = front();
+    public T desencolar() {
+        T aux = frente();
         frente = adelantar(frente);
         conteo--;
         return aux;
     }
 
     @Override
-    public boolean isEmpty() {
+    public boolean estaVacio() {
         return this.conteo == 0;
     }
 
     @Override
-    public T front() {
-        if (this.isEmpty()) {
+    public T frente() {
+        if (this.estaVacio()) {
             throw new RuntimeException("Queue vacio");
         }
         
         return arreglo[frente];
     }
     
-    public boolean isFull() {
+    public boolean estaLlena() {
         return fin >= this.arreglo.length - 1;
     }
 
     @Override
-    public void clear() {
+    public void limpiar() {
         conteo = 0;
         frente = 0;
         fin = -1;

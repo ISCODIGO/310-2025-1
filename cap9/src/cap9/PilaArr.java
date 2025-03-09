@@ -8,52 +8,60 @@ package cap9;
  *
  * @author enrique
  */
-public class StackArray<T> implements Stack<T> {
-    
+public class PilaArr<T> implements IPila<T> {
+
     private int cima;
+    private int conteo;
     T[] arreglo;
-    
-    public StackArray(int capacidad) {
+
+    public PilaArr(int capacidad) {
         arreglo = (T[]) new Object[capacidad];
         cima = -1;
     }
 
     @Override
-    public boolean push(T dato) {
-        if (isFull()) {
+    public boolean apilar(T dato) {
+        if (estaLleno()) {
             throw new StackOverflowError();
         }
-        
+
         arreglo[++cima] = dato;
+        conteo++;
         return true;
     }
 
     @Override
-    public T pop() {
-        if (isEmpty()) {
-            throw new ArrayIndexOutOfBoundsException();  // TODO: StackUnderflowError
+    public T desapilar() {
+        if (estaVacio()) {
+            throw new ArrayIndexOutOfBoundsException(); // TODO: StackUnderflowError
         }
-        
+
         T aux = arreglo[cima--];
+        conteo--;
         return aux;
     }
 
     @Override
-    public T top() {
-        if (isEmpty()) {
-            throw new ArrayIndexOutOfBoundsException();  // TODO: StackUnderflowError
+    public T cima() {
+        if (estaVacio()) {
+            throw new ArrayIndexOutOfBoundsException(); // TODO: StackUnderflowError
         }
-        
+
         return arreglo[cima];
     }
 
     @Override
-    public boolean isEmpty() {
+    public boolean estaVacio() {
         return cima == -1;
     }
-    
-    public boolean isFull() {
+
+    public boolean estaLleno() {
         return cima == arreglo.length - 1;
     }
-    
+
+    @Override
+    public void limpiar() {
+        cima = -1;
+        conteo = 0;
+    }
 }

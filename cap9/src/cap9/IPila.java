@@ -9,9 +9,10 @@ package cap9;
  * Last-in first-out (ultimo en entrar es el primero en salir)
  * @author enrique
  */
-public interface Stack<T> {
-    boolean push(T dato);  // insertar una nueva cima a la pila
-    T pop();  // remover la cima actual
-    T top();  // lee el dato de la cima actual
-    boolean isEmpty();  // verifica si la pila esta vacia
+public interface IPila<T> {
+    boolean apilar(T dato);  // insertar una nueva cima a la pila
+    T desapilar();  // remover la cima actual
+    T cima();  // lee el dato de la cima actual
+    boolean estaVacio();  // verifica si la pila esta vacia
+    void limpiar();  // elimina todos los elementos de la pila
 }

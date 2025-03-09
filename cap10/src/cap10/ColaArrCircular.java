@@ -8,9 +8,9 @@ package cap10;
  *
  * @author enrique
  */
-public class QueueArrayCircular<T> extends QueueArray<T> {
+public class ColaArrCircular<T> extends ColaArr<T> {
     
-    public QueueArrayCircular(int capacidad) {
+    public ColaArrCircular(int capacidad) {
         super(capacidad);
     }
 
@@ -20,7 +20,7 @@ public class QueueArrayCircular<T> extends QueueArray<T> {
     }
 
     @Override
-    public boolean isFull() {
+    public boolean estaLlena() {
         return super.getConteo() == super.arreglo.length;
     }
     

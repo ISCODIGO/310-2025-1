@@ -9,32 +9,26 @@ package cap9;
  * @author enrique
  */
 public class Parentesis {
-    /*
-    
-    (2 + 3) / ((3 + 4) * 3))
-    
-    
-    */
     
     public static void main(String[] args) {
         String comando = "(2 + 3) / ((3 + 4) * 3)()(()";
-        Stack<Character> pila = new StackLL<>();
-        
-        for(char item : comando.toCharArray()) {
+        IPila<Character> pila = new PilaLL<>();
+
+        for (char item : comando.toCharArray()) {
             if (item == '(') {
-                pila.push(item);
+                pila.apilar(item);
             }
-            
+
             if (item == ')') {
-                if (pila.isEmpty()) {
+                if (pila.estaVacio()) {
                     System.out.println("ERROR: Pila con un cierre extra");
                     return;
                 }
-                pila.pop();
+                pila.desapilar();
             }
         }
-        
-        if (!pila.isEmpty()) {
+
+        if (!pila.estaVacio()) {
             System.out.println("ERROR: Pila con una apertura extra");
         } else {
             System.out.println("OK");

@@ -10,35 +10,36 @@ import java.util.LinkedList;
  *
  * @author enrique
  */
-public class StackLL<T> implements Stack<T> {
+public class PilaLL<T> implements IPila<T> {
     private LinkedList<T> lista;
 
-    public StackLL() {
+    public PilaLL() {
         lista = new LinkedList<>();
-    }
-    
-    
+    }       
     
     @Override
-    public boolean push(T dato) {
+    public boolean apilar(T dato) {
         lista.addFirst(dato);
         return true;        
     }
 
     @Override
-    public T pop() {
+    public T desapilar() {
         return lista.removeFirst();
     }
 
     @Override
-    public T top() {
+    public T cima() {
         return lista.getFirst();
     }
 
     @Override
-    public boolean isEmpty() {
+    public boolean estaVacio() {
         return lista.isEmpty();
     }
-    
-    
+
+    @Override
+    public void limpiar() {
+        lista.clear();
+    }
 }

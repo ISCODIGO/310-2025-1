@@ -10,36 +10,36 @@ import java.util.LinkedList;
  *
  * @author enrique
  */
-public class QueueLL<T> implements Queue<T> {
+public class ColaLL<T> implements ICola<T> {
     private LinkedList<T> lista;  // frente: ultimo (remover), fin: primero (insertar)
     
-    public QueueLL() {
+    public ColaLL() {
         lista = new LinkedList<>();
     }
 
     @Override
-    public boolean enqueue(T dato) {
+    public boolean encolar(T dato) {
         lista.addFirst(dato);
         return true;
     }
 
     @Override
-    public T dequeue() {
+    public T desencolar() {
         return lista.removeLast();
     }
 
     @Override
-    public boolean isEmpty() {
+    public boolean estaVacio() {
         return lista.isEmpty();
     }
 
     @Override
-    public T front() {  // O(1)
+    public T frente() {  // O(1)
         return lista.getLast();
     }
 
     @Override
-    public void clear() {
+    public void limpiar() {
         lista.clear();
     }           
 }

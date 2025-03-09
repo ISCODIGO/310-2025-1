@@ -6,28 +6,34 @@ package cap8;
 
 /**
  * TDA de una lista
+ * 
  * @author enrique
  */
-public interface Lista<T> {
+public interface ILista<T> {
     // Eliminar todos los elementos de la lista
-    void limpiar();  // O(1)
+    void limpiar(); // O(1)
+
     boolean agregarPrimero(T dato);
+
     boolean agregarUltimo(T dato);
-    
+
     // Agregar un nodo en una posicion determinada
     boolean insertar(T dato, int posicion);
-    
+
     // Devuelva la posicion a traves del dato indicado
     int buscar(T dato);
-    
+
     boolean eliminar(T dato);
+
     boolean eliminar(int posicion);
+
     T eliminarPrimero();
+
     T eliminarUltimo();
-    
+
     // Retorna la cantidad de elementos de la lista
-    int conteo();  // O(1)
-    
+    int conteo(); // O(1)
+
     // true: no hay nodos, false: hay al menos un nodo
     boolean estaVacia();
 }

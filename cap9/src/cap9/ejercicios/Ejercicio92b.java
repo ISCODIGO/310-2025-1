@@ -4,9 +4,9 @@
  */
 package cap9.ejercicios;
 
-import cap9.Stack;
-import cap9.StackArray;
-import cap9.StackLL;
+import cap9.IPila;
+import cap9.PilaArr;
+import cap9.PilaLL;
 
 /**
  *
@@ -21,8 +21,8 @@ public class Ejercicio92b {
     
     // O(n)
     public static boolean probar(String s) {
-        Stack<Character> pila1 = new StackLL<>();
-        Stack<Character> pila2 = new StackArray<>(s.length());
+        IPila<Character> pila1 = new PilaLL<>();
+        IPila<Character> pila2 = new PilaArr<>(s.length());
         if (!s.contains("&")) return false;
         
         // desde el inicio hasta & ----->
@@ -34,7 +34,7 @@ public class Ejercicio92b {
             if (letra == '&') {
                 break;
             }
-            pila1.push(letra);
+            pila1.apilar(letra);
             i++;
         }        
         
@@ -43,19 +43,20 @@ public class Ejercicio92b {
         while (true) {
             letra = s.charAt(j);
             if (letra == '&') break;
-            pila2.push(letra);
+            pila2.apilar(letra);
             j--;
         }
         
-        while (!pila1.isEmpty() && !pila2.isEmpty()) {
-            char c1 = pila1.pop();
-            char c2 = pila2.pop();
+        // comparar cada elemento para saber si hay diferencias
+        while (!pila1.estaVacio()&& !pila2.estaVacio()) {
+            char c1 = pila1.desapilar();
+            char c2 = pila2.desapilar();
             if (c1 != c2) {
                 return false;
             }
         }
         
-        if (!pila1.isEmpty() || !pila2.isEmpty()) return false;
+        if (!pila1.estaVacio()|| !pila2.estaVacio()) return false;
         return true;       
     }
     
