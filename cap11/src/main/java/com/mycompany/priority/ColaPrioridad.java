@@ -55,7 +55,7 @@ public class ColaPrioridad<T> {
     public static void main(String[] args) {
         ColaPrioridad<String> cola = new ColaPrioridad<>(5);
 
-        cola.encolar("1 - Persona con prioridad 1", 1);
+        cola.encolar("1 - Persona con prioridad 4", 4);
         cola.encolar("2 - Persona con prioridad 2", 2);
         cola.encolar("3 - Persona con prioridad 3", 3);
         cola.encolar("4 - Persona con prioridad 4", 4);

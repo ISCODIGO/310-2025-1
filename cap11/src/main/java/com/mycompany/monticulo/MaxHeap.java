@@ -4,18 +4,21 @@
  */
 package com.mycompany.monticulo;
 
+import com.mycompany.printer.HeapPrinter;
+import java.util.Scanner;
+
 /**
  * Este es nu ejemplo de un montículo binario implementado en Java. Un montículo de tipo Max-Heap
  * donde el valor del nodo raíz es mayor que los valores de sus hijos. El montículo se almacena en un
  * arreglo y se implementan las operaciones de inserción y eliminación.
  * @author enrique
  */
-public class Monticulo {
+public class MaxHeap {
     private int[] lista; // Arreglo para almacenar los elementos del montículo
     private int conteo; // Número de elementos en el montículo
 
     // Constructor para inicializar el montículo con una capacidad dada
-    public Monticulo(int capacidad) {
+    public MaxHeap(int capacidad) {
         lista = new int[capacidad];
         conteo = 0;
     }
@@ -35,13 +38,12 @@ public class Monticulo {
         return 2 * pos + 2;
     }
 
-    // Mueve el elemento en la posición pos hacia arriba en el montículo para mantener la propiedad del montículo
+    // Mueve el elemento en la posición pos hacia arriba en el montículo para 
+    // mantener la propiedad del montículo
     private int flotar(int pos) {
         int current = pos;
         while (current > 0 && lista[current] > lista[padre(current)]) {
-            int temp = lista[current];
-            lista[current] = lista[padre(current)];
-            lista[padre(current)] = temp;
+            intercambiar(current, padre(current));
             current = padre(current);
         }
         return current;
@@ -50,6 +52,9 @@ public class Monticulo {
     // Inserta un nuevo elemento en el montículo
     public void insertar(int elemento) {
         lista[conteo++] = elemento;
+        if (conteo == lista.length) {
+            crecer();
+        }
         flotar(conteo - 1);
     }
 
@@ -80,34 +85,40 @@ public class Monticulo {
             if (lista[current] >= lista[mayorHijo]) {
                 break;
             }
-            int temp = lista[current];
-            lista[current] = lista[mayorHijo];
-            lista[mayorHijo] = temp;
+            intercambiar(current, mayorHijo);
             current = mayorHijo;
         }
+    }
+    
+    private void crecer()
+    {
+        int[] nuevo = new int[lista.length*2];
+        System.arraycopy(this.lista, 0, nuevo, 0, nuevo.length);
+        this.lista = nuevo;
+    }
+    
+    private void intercambiar(int i, int j) {
+        int temp = lista[i];
+        lista[i] = lista[j];
+        lista[j] = temp;
+    }
+    
+    public void print() {
+        HeapPrinter printer = new HeapPrinter(lista);
+        printer.print();
     }
 
     // Método principal para demostrar el uso de la clase Monticulo
     public static void main(String[] args) {
-        Monticulo monticulo = new Monticulo(10);
-        monticulo.insertar(5);
-        monticulo.insertar(3);
-        monticulo.insertar(8);
-        monticulo.insertar(1);
-        // Insertar el elemento 6 en el montículo
-        monticulo.insertar(6);
-
-        // La estructura del montículo después de insertar 6:
-        //         8
-        //       /   \
-        //      5     6
-        //     / \   /
-        //    1   3  5
-
-        System.out.println("Eliminado: " + monticulo.eliminar());
-        System.out.println("Eliminado: " + monticulo.eliminar());
-        System.out.println("Eliminado: " + monticulo.eliminar());
-        System.out.println("Eliminado: " + monticulo.eliminar());
-        System.out.println("Eliminado: " + monticulo.eliminar());
+        MaxHeap monticulo = new MaxHeap(10);
+        Scanner entrada = new Scanner(System.in);
+        int opcion;
+        
+        do {
+            System.out.print("Escriba numero positivo: ");          
+            opcion = entrada.nextInt();
+            monticulo.insertar(opcion);
+            monticulo.print();
+        } while (opcion >= 0);
     }
 }
