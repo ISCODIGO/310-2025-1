@@ -2,8 +2,6 @@ package com.mycompany.monticulo;
 
 import com.mycompany.printer.HeapPrinter;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Este es un ejemplo de un montículo binario de mínimos implementado en Java. Un montículo de tipo Min-Heap
