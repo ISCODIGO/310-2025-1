@@ -18,6 +18,34 @@ public class Main {
         var n4 = bin.agregarIzq(n5, 4);
         var n10 = bin.agregarIzq(n20, 10);
         
-        bin.enorden(bin.raiz);
+        
+        /*
+                        8
+                       / \                               
+                      3   20
+                     / \  /                            
+                    1  5 10                                       
+                       /
+                      4                 
+        */
+        
+        bin.imprimir();
+        
+        System.out.println("Pre Orden");
+        System.out.println(bin.preorden());
+        
+        System.out.println("En Orden");
+        System.out.println(bin.enorden());
+        
+        System.out.println("Post Orden");
+        System.out.println(bin.postorden());
+        
+        System.out.println("Conteo no-recursivo: " + bin.conteo());
+        System.out.println("Conteo recursivo: " + bin.conteoRecursivo());
+        
+        System.out.println("La altura es: " + bin.altura());
+        
+        System.out.println("El balance es: " + bin.balance());
+        
     }
 }
